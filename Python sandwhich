@@ -9,6 +9,7 @@ void setup() {
 void loop() {
   int x;
   int y;
+  int z;
 
   Serial.println("Regular or Gluten-free bun? Type 44 for gluten-free and 99 for the regular bun option.");
 
@@ -17,8 +18,9 @@ void loop() {
   }
 
   // Read the input values
-  x = Serial.parseInt();
-  y = Serial.parseInt();
+  x = Serial.parseInt(); // initial bun choice gluten or regular bun
+  y = Serial.parseInt(); // 
+  z= Serial.parseInt();
 
   // Process bun choice
   switch (x) {
@@ -32,9 +34,24 @@ void loop() {
       Serial.println("Please make the correct selection.");
   }
 
-  // Additional code for processing Topping_choice if needed
-  // ...
+  Serial.println("Select the available options and type the associated values:");
+  Serial.println("1. Chicken Salad.");
+  Serial.println("2. Cheese.");
+  Serial.prinln("3. Salami.");
+  Serial.println("4. Turkey.");
+  while (Serial.available() == 0) {
+    // Wait until data is available in the serial buffer
+  }
 
-  // Add some delay or other logic to control the pace of the loop
+  // Select the appropriate topping 
+  switch(y) {
+    case 1:
+      Serial.println("With chicken salad.");
+    case 2:
+      Serial.println("With Cheese.");
+    case 3:
+      Serial.println("With salami.");
+        
+  }
   delay(1000);
 }
