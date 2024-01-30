@@ -1,4 +1,3 @@
-
 void setup() {
   Serial.begin(9600);
   while (!Serial) {
@@ -19,8 +18,8 @@ void loop() {
 
   // Read the input values
   x = Serial.parseInt(); // initial bun choice gluten or regular bun
-  y = Serial.parseInt(); // 
-  z= Serial.parseInt();
+  y = Serial.parseInt(); // topping selection
+  z = Serial.parseInt(); // bun selection again
 
   // Process bun choice
   switch (x) {
@@ -33,16 +32,16 @@ void loop() {
     default:
       Serial.println("Please make the correct selection.");
   }
-
+if (x == 44 || x == 99) {
   Serial.println("Select the available options and type the associated values:");
   Serial.println("1. Chicken Salad.");
   Serial.println("2. Cheese.");
-  Serial.prinln("3. Salami.");
+  Serial.println("3. Salami.");
   Serial.println("4. Turkey.");
   while (Serial.available() == 0) {
     // Wait until data is available in the serial buffer
   }
-
+ }
   // Select the appropriate topping 
   switch(y) {
     case 1:
@@ -51,7 +50,7 @@ void loop() {
       Serial.println("With Cheese.");
     case 3:
       Serial.println("With salami.");
-        
+
   }
   delay(1000);
 }
