@@ -1,26 +1,40 @@
-void setup() {
-Serial.begin(9600);
-while(!Serial){};
 
+void setup() {
+  Serial.begin(9600);
+  while (!Serial) {
+    // Wait for the Serial connection to be established
+  }
 }
 
-
-
 void loop() {
-Bun_choice=parseint(x)
-Topping_choice=parseint(y)
-Serial.println("Regular or Gluten-free
-bun? Type 44 for gluten free and 99 for the regular bun option.")
-switch(bun_choice){  
-  case label1:
-  if x=44{
-    Serial.println ("")
+  int x;
+  int y;
+
+  Serial.println("Regular or Gluten-free bun? Type 44 for gluten-free and 99 for the regular bun option.");
+
+  while (Serial.available() == 0) {
+    // Wait until data is available in the serial buffer
   }
-  
-switch(bun_choice){
-  case label2:
-  if x=99{
-      Serial.println("")
-  } 
-  
+
+  // Read the input values
+  x = Serial.parseInt();
+  y = Serial.parseInt();
+
+  // Process bun choice
+  switch (x) {
+    case 44:
+      Serial.println("Make one gluten-free bun.");
+      break;
+    case 99:
+      Serial.println("Make one regular bun.");
+      break;
+    default:
+      Serial.println("Please make the correct selection.");
+  }
+
+  // Additional code for processing Topping_choice if needed
+  // ...
+
+  // Add some delay or other logic to control the pace of the loop
+  delay(1000);
 }
