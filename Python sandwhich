@@ -1,0 +1,26 @@
+void setup() {
+Serial.begin(9600);
+while(!Serial){};
+
+}
+
+
+
+void loop() {
+Bun_choice=parseint(x)
+Topping_choice=parseint(y)
+Serial.println("Regular or Gluten-free
+bun? Type 44 for gluten free and 99 for the regular bun option.")
+switch(bun_choice){  
+  case label1:
+  if x=44{
+    Serial.println ("")
+  }
+  
+switch(bun_choice){
+  case label2:
+  if x=99{
+      Serial.println("")
+  } 
+  
+}
