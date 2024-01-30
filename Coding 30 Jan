@@ -1,1 +1,12 @@
+void setup() {
+  Serial.begin(9600);
+  while (!Serial) {}
+  int x[]={12,3,6,0,1,43,8,14,7};
+  Serial.println (sizeof(x)/4);
+  for (int i= 0; i<(sizeof(x)/4); i++)
+    Serial.println(x[i]);
+  
+  
+}  
+
 
