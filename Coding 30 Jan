@@ -8,5 +8,23 @@ void setup() {
   
   
 }  
+#comparator function 
+
+void setup() {
+  Serial.begin(9600);
+  while (!Serial) {}
+
+  int x[] = {12, 3, 6, 0, 1, 43, 8, 14, 7};
+  int small = x [0];
+
+
+  for (int i= 1; i<9; i++) 
+  {
+    if (x[i]<small){
+      small= x[i];
+    }
+  }
+  Serial.println (small);
+}
 
 
