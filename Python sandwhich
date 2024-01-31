@@ -54,3 +54,20 @@ if (x == 44 || x == 99) {
   }
   delay(1000);
 }
+# another possibility with if statements: 
+
+Serial.begin(9600);
+while(!Serial);
+Serial.println("Please select the appropriate bun. For gluten-free input # 44 and for regular input # 99.");
+int x;
+x=Serial.parseInt(); // x is assigned to the bun choice
+if (x==44){
+  Serial.println("One gluten free-bun.");
+}
+  else if (x==99){
+  Serial.println("One regular bun.");
+  }
+ 
+
+
+}
