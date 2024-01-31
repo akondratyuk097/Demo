@@ -12,7 +12,7 @@ if (x==44){
 else if (x==99){
   Serial.println("One regular bun.");
 }
- delay(500);
+  delay(500);
   Serial.println("Select the available options and type the associated values:");
   Serial.println("1. Chicken Salad.");
   Serial.println("2. Cheese.");
@@ -36,16 +36,28 @@ while (x==44||x==99){
       }
    }else if (y == 2) {
     Serial.println("With cheese.");
-  } else if (y == 3) {
+      if (x==44){// if the original bun was assigned to be gluten free the function will add another gluten free bun or regular depending upon the value selected initially.
+       Serial.println("add another gluten free bun.");
+      }else if (x==99){
+        Serial.println("add another regular bun.");
+      }
+  }else if (y == 3) {
     Serial.println("With salami.");
-  } else if (y == 4) {
+      if (x==44){
+        Serial.println("add another gluten free bun.");
+      }else if (x==99){
+        Serial.println("add another regular bun.");
+      }
+  }else if (y == 4) {
     Serial.println("With turkey.");
+    if (x==44){
+      Serial.println("add another gluten free bun.");
+    }else if (x==99){
+      Serial.println("add another regular bun.");
+    }
   }
-  delay(500);
- 
-  
+}
 
-  }
 }
 
 
