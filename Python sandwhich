@@ -1,11 +1,10 @@
 Serial.begin(9600);
-while(!Serial){}
+while(!Serial){} // awaits the start of the serial console 
 Serial.println("Please select the appropriate bun. For gluten-free input # 44 and for regular input # 99.");
-while (Serial.available()==0){
+while (Serial.available()==0){//awaits the for the input from the console 
 }
 int x;
-x=Serial.parseInt(); // x is assigned to the bun choice
-
+x=Serial.parseInt(); // // allows for the input on serial console to be read from the user 
 if (x==44){
   Serial.println("One gluten free-bun.");
 }
@@ -13,19 +12,19 @@ else if (x==99){
   Serial.println("One regular bun.");
 }
   delay(500);
-  Serial.println("Select the available options and type the associated values:");
+  Serial.println("Select the available options and type the associated values:");// Start of the topping options prompt 
   Serial.println("1. Chicken Salad.");
   Serial.println("2. Cheese.");
   Serial.println("3. Salami.");
   Serial.println("4. Turkey.");
   // Wait for valid topping input
 
-while (x==44||x==99){
-  int y=0;
+while (x==44||x==99){ // once the input for x has been selected it will execute the conditions within this function to print the selected topping 
+  int y=0;  // topping variable 
   while (Serial.available() == 0) {
   // Wait for input
   }
-  y = Serial.parseInt();
+  y = Serial.parseInt();// allows for the input on serial console to be read from the user   
   // Display the chosen topping
   if (y== 1) {
     Serial.println("With chicken salad.");
@@ -43,14 +42,14 @@ while (x==44||x==99){
       }
   }else if (y == 3) {
     Serial.println("With salami.");
-      if (x==44){
+      if (x==44){// if the original bun was assigned to be gluten free the function will add another gluten free bun or regular depending upon the value selected initially.
         Serial.println("add another gluten free bun.");
       }else if (x==99){
         Serial.println("add another regular bun.");
       }
   }else if (y == 4) {
     Serial.println("With turkey.");
-    if (x==44){
+    if (x==44){// if the original bun was assigned to be gluten free the function will add another gluten free bun or regular depending upon the value selected initially.
       Serial.println("add another gluten free bun.");
     }else if (x==99){
       Serial.println("add another regular bun.");
