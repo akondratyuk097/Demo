@@ -1,73 +1,57 @@
-void setup() {
-  Serial.begin(9600);
-  while (!Serial) {
-    // Wait for the Serial connection to be established
-  }
+Serial.begin(9600);
+while(!Serial){}
+Serial.println("Please select the appropriate bun. For gluten-free input # 44 and for regular input # 99.");
+while (Serial.available()==0){
 }
+int x;
+x=Serial.parseInt(); // x is assigned to the bun choice
 
-void loop() {
-  int x;
-  int y;
-  int z;
-
-  Serial.println("Regular or Gluten-free bun? Type 44 for gluten-free and 99 for the regular bun option.");
-
-  while (Serial.available() == 0) {
-    // Wait until data is available in the serial buffer
-  }
-
-  // Read the input values
-  x = Serial.parseInt(); // initial bun choice gluten or regular bun
-  y = Serial.parseInt(); // topping selection
-  z = Serial.parseInt(); // bun selection again
-
-  // Process bun choice
-  switch (x) {
-    case 44:
-      Serial.println("Make one gluten-free bun.");
-      break;
-    case 99:
-      Serial.println("Make one regular bun.");
-      break;
-    default:
-      Serial.println("Please make the correct selection.");
-  }
-if (x == 44 || x == 99) {
+if (x==44){
+  Serial.println("One gluten free-bun.");
+}
+else if (x==99){
+  Serial.println("One regular bun.");
+}
+ delay(500);
   Serial.println("Select the available options and type the associated values:");
   Serial.println("1. Chicken Salad.");
   Serial.println("2. Cheese.");
   Serial.println("3. Salami.");
   Serial.println("4. Turkey.");
+  // Wait for valid topping input
+
+while (x==44||x==99){
+  int y=0;
   while (Serial.available() == 0) {
-    // Wait until data is available in the serial buffer
+  // Wait for input
   }
- }
-  // Select the appropriate topping 
-  switch(y) {
-    case 1:
-      Serial.println("With chicken salad.");
-    case 2:
-      Serial.println("With Cheese.");
-    case 3:
-      Serial.println("With salami.");
-
+  y = Serial.parseInt();
+  // Display the chosen topping
+  if (y== 1) {
+    Serial.println("With chicken salad.");
+    if (x==44){// if the original bun was assigned to be gluten free the function will add another gluten free bun or regular depending upon the value selected initially.
+      Serial.println("add another gluten free bun.");
+      }else if (x==99){
+        Serial.println("add another regular bun.");
+      }
+   }else if (y == 2) {
+    Serial.println("With cheese.");
+  } else if (y == 3) {
+    Serial.println("With salami.");
+  } else if (y == 4) {
+    Serial.println("With turkey.");
   }
-  delay(1000);
-}
-# another possibility with if statements: 
-
-Serial.begin(9600);
-while(!Serial);
-Serial.println("Please select the appropriate bun. For gluten-free input # 44 and for regular input # 99.");
-int x;
-x=Serial.parseInt(); // x is assigned to the bun choice
-if (x==44){
-  Serial.println("One gluten free-bun.");
-}
-  else if (x==99){
-  Serial.println("One regular bun.");
-  }
+  delay(500);
  
+  
 
-
+  }
 }
+
+
+
+
+
+
+
+
