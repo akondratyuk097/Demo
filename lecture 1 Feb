@@ -1,1 +1,21 @@
+###################### this is to read characters from a console and create the same output 
+
+Serial.begin(9600);
+while (!Serial) {} // awaits the start of the serial console 
+Serial.println("What is your favorite food?");
+while(Serial.available()==0){}
+
+int z= Serial.available();
+int i=z;
+char ans [z];
+
+for (i=1; i<=z; i++){
+  ans [i]= Serial.read();
+  
+}
+
+Serial.println(" I can see that you entered ");
+for (int j=0; j<=z ; j++){
+  Serial.print (ans[j]);
+}
 
