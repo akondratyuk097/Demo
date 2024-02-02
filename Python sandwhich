@@ -124,6 +124,8 @@ if ((x=1) && (y=1)){
 }
 
 ################################### final version
+
+
 void setup() {
 Serial.begin(9600);
 while (!Serial) {} // awaits the start of the serial console 
@@ -138,7 +140,6 @@ void loop() {
   while (Serial.available() < 2) {} // Wait until at least two characters are available
   char userInput[2]; 
   Serial.readBytes(userInput, 2); // Read two characters
-
   int inputNumber_1 = atoi(userInput); // Convert ASCII to integer
 
   if (inputNumber_1 == 44) {
@@ -150,7 +151,7 @@ void loop() {
   }
 
 
-  delay(1000);
+  delay(3000);
   while ((inputNumber_1==44) || (inputNumber_1==99)){// created for the purpose of keeping the topping questions when the correct values are selected
     if (inputNumber_1== 44){ // loop for the glutten free bun 
     Serial.println ("Select from the choice of 4 toppings and input the appropriate number:");
@@ -160,9 +161,9 @@ void loop() {
     Serial.println ("4. salami");
 
     delay(1000);
-    while (Serial.available()==0) {} // Wait until at least one characters is available
+    while (Serial.available()<1) {} // Wait until at least one characters is available
     char userInput_1[1]; 
-    Serial.readBytes(userInput_1, 1);
+    userInput_1[0]= Serial.read();
     int x= atoi(userInput_1);// trasnfers topping character into integer 
     if (x==1){ 
       Serial.println("with turkey");
@@ -226,6 +227,11 @@ void loop() {
 
 
 }
+
+
+
+
+
 
 }
 
