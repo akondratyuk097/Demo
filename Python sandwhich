@@ -124,8 +124,6 @@ if ((x=1) && (y=1)){
 }
 
 ################################### final version
-
-
 void setup() {
 Serial.begin(9600);
 while (!Serial) {} // awaits the start of the serial console 
@@ -136,20 +134,18 @@ while (!Serial) {} // awaits the start of the serial console
 
 void loop() {
   Serial.println("Please select the appropriate bun. For gluten-free input 44 and for regular input 99.");
-
   while (Serial.available() < 2) {} // Wait until at least two characters are available
   char userInput[2]; 
   Serial.readBytes(userInput, 2); // Read two characters
   int inputNumber_1 = atoi(userInput); // Convert ASCII to integer
 
-  if (inputNumber_1 == 44) {
+ if (inputNumber_1 == 44) {
     Serial.println("One order of gluten-free bun.");
   } else if (inputNumber_1 == 99) {
     Serial.println("One order of a regular bun");
   } else {
     Serial.println("Invalid input. Please try again.");
   }
-
 
   delay(3000);
   while ((inputNumber_1==44) || (inputNumber_1==99)){// created for the purpose of keeping the topping questions when the correct values are selected
@@ -194,9 +190,9 @@ void loop() {
     Serial.println ("4. salami");
 
     delay(1000);
-    while (Serial.available()==0) {} // Wait until at least one characters is available
+    while (Serial.available()==1) {} // Wait until at least one characters is available
     char userInput_2[1]; 
-    Serial.readBytes(userInput_2, 1);
+    userInput_2[0]= Serial.read();
     int y= atoi(userInput_2);// trasnfers topping character into integer 
     if (y==1){ 
       Serial.println("with turkey");
@@ -234,7 +230,5 @@ void loop() {
 
 
 }
-
-
 
 
