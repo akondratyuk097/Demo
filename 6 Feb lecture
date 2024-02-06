@@ -29,7 +29,28 @@ Serial.println(light_reading);
 delay(500);
 
 }
+############################# another lgiht reading 
+#define light A8
 
+void setup() {
+Serial.begin(9600);
+while(!Serial);
+}
+
+void loop() {
+int light_reading= analogRead (light); // reads the lumens of light and corresponds it to a int value. The brighter the higher it is. 
+Serial.println(light_reading);
+delay(500);
+if (light_reading < 100) {
+  Serial.println("The room is too dark");
+} else if (light_reading >= 100 && light_reading <= 300) {
+  Serial.println("It is just about right.");
+} else if (light_reading > 300) {
+  Serial.println("The room is too bright.");
+}
+
+
+}
 
 
 
