@@ -17,7 +17,18 @@ while (Serial.available()==0){};
 String name;
 name= Serial.readString();// stores a string into a variable
 Serial.println ("Hello "+ name);
+########################### light reading 
+void setup() {
+Serial.begin(9600);
+while(!Serial);
+}
 
+void loop() {
+int light_reading= analogRead (light); // reads the lumens of light and corresponds it to a int value. The brighter the higher it is. 
+Serial.println(light_reading);
+delay(500);
+
+}
 
 
 
