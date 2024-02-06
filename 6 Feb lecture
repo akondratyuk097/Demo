@@ -4,8 +4,9 @@ Serial.begin(9600);
 while(!Serial);
 Serial.println("Enter a number");
 while(Serial.available()==0){};
-int x= Serial.parseInt();
+int x= Serial.parseInt();/// loooks for an integer quickly if the integer is inside of a long text then it won't be able to find it in time 
 Serial.println (x);
+
 
 
 
