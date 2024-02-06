@@ -1,1 +1,19 @@
+######################## stores integer
+void setup() {
+Serial.begin(9600);
+while(!Serial);
+Serial.println("Enter a number");
+while(Serial.available()==0){};
+int x= Serial.parseInt();
+Serial.println (x);
+
+
+
+
+
+
+
+
+
+
 
