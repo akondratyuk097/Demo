@@ -41,5 +41,13 @@ int size = sizeof(arr) / sizeof(arr[0]); // Calculate the size of the array whic
 for (int i = 0; i < size; i++) {
     arr[i] = 0;}
 
-#####################33
+// Replace all numbers back to original numbers
+int originalNumbers[] = {12, 3, 6, 0, 1, 43, 8, 14, 7};
+for (int i = 0; i < size; i++) {
+    arr[i] = originalNumbers[i];
+}
 
+// Swap the 3rd number with the 8th number
+int temp = arr[2];  // Store the 3rd number (6) in a temporary variable
+arr[2] = arr[7];    // Replace the 3rd number with the 8th number (14)
+arr[7] = temp;   
