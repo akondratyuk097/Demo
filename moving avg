@@ -1,1 +1,108 @@
+################# one version 
+#define light A8 
+
+
+void setup() {
+  Serial.begin(9600);
+  while (!Serial); // Wait for Serial Monitor to open
+}
+
+void loop() {
+  delay(100);
+  Serial.println("Select a window size from the following options:");
+  Serial.println("1. Input 5 for window size 5.");
+  Serial.println("2. Input 10 for window size 10.");
+  Serial.println("3. Input 15 for window size 15.");
+
+  while (Serial.available() == 0) {} // Wait for user input
+
+  int x = Serial.parseInt(); // Read user input
+  while (Serial.available()) Serial.read(); // Clear remaining characters in the serial buffer
+
+  int lightVals[100];
+
+  if (x == 5) {
+    for (int s = 0; s < 100; s++) {
+      lightVals[s] = analogRead(light);
+      delay(300);
+    }
+
+    double array_1[96]; // Array 1 will have 96 values
+
+    for (int j = 0; j < 96; j++) {
+      double sum = 0;
+      for (int y = j; y < (j + 5); y++) {
+        sum += lightVals[y];
+      }
+      array_1[j] = sum / 5; // Corrected averaging
+      Serial.print("LightValue: ");
+      Serial.print(lightVals[j]); // Send light value for first plot
+      Serial.print(", MovingAvg: ");
+      Serial.println(array_1[j]); // Send moving average value for second plot
+    }
+
+  } else if (x == 10) {
+    for (int s = 0; s < 100; s++) {
+      lightVals[s] = analogRead(light);
+      delay(300);
+    }
+    double array_2[91]; // Array 2 will have 91 values
+    for (int j = 0; j < 91; j++) {
+      double sum = 0;
+      for (int y = j; y < (j + 10); y++) {
+        sum += lightVals[y];
+      }
+      array_2[j] = sum / 10; // Corrected averaging
+      Serial.print("LightValue: ");
+      Serial.print(lightVals[j]); // Send light value for first plot
+      Serial.print(", MovingAvg: ");
+      Serial.println(array_2[j]); // Send moving average value for second plot
+    }
+
+  } else if (x == 15) {
+    for (int s = 0; s < 100; s++) {
+      lightVals[s] = analogRead(light);
+      delay(300);
+    }
+    double array_3[86]; // Array 3 will have 86 values
+    for (int j = 0; j < 86; j++) {
+      double sum = 0;
+      for (int y = j; y < (j + 15); y++) {
+        sum += lightVals[y];
+      }
+      array_3[j] = sum / 15; // Corrected averaging
+      Serial.print("LightValue: ");
+      Serial.print(lightVals[j]); // Send light value for first plot
+      Serial.print(", MovingAvg: ");
+      Serial.println(array_3[j]); // Send moving average value for second plot
+    }
+
+  } else {
+    Serial.println("Please input the correct numerical selection.");
+  }
+}
+
+
+############################### another version 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
