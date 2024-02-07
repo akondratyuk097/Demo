@@ -52,6 +52,25 @@ if (light_reading < 100) {
 
 }
 
+####################### moving average of window 3 interval values 
+void setup() {
+  Serial.begin(9600);
+  while (!Serial); // Wait for Serial Monitor to open
+
+  int arr[] = {32, 26, 28, 25, 29, 22, 38, 37, 36, 42, 40, 45};
+  double arr1[10]; // Change the size to match the number of averages you want to compute
+  double sum;
+
+  for (int j = 0; j < 10; j++) {
+    sum=0;
+    for (int i = j; i < (j + 3); i++) {
+      sum += arr[i];
+    }
+    arr1[j] = sum / 3;
+    Serial.println(arr1[j]);
+  }
+}
+
 
 
 
