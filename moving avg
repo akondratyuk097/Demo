@@ -13,7 +13,6 @@ void loop() {
   Serial.println("1. Input 5 for window size 5.");
   Serial.println("2. Input 10 for window size 10.");
   Serial.println("3. Input 15 for window size 15.");
-
   while (Serial.available() == 0) {} // Wait for user input
 
   int x = Serial.parseInt(); // Read user input
@@ -36,15 +35,12 @@ void loop() {
       }
       array_1[j] = sum / 5; // Corrected averaging
     }
-    for (int j = 0; j < 96; j++) {
+    for (int j = 0; j < 100; j++) {
       Serial.println(lightVals[j]); // Send light value for first plot
      Serial.print(','); // seperates the data so the serial plotter is able to plot two values at the same time
       Serial.println(array_1[j]); // Send moving average value for second plot
      delay(500);
     }
-
-
-
 
   } else if (x == 10) {
     for (int s = 0; s < 100; s++) {
@@ -59,7 +55,7 @@ void loop() {
       }
       array_2[j] = sum / 10; // Corrected averaging
     }
-    for (int j = 0; j < 96; j++) {
+    for (int j = 0; j < 100; j++) {
       Serial.println(lightVals[j]); // Send light value for first plot
       Serial.print(','); // seperates the data so the serial plotter is able to plot two values at the same time
       Serial.println(array_2[j]); // Send moving average value for second plot
@@ -78,7 +74,7 @@ void loop() {
       }
       array_3[j] = sum / 15; // Corrected averaging
     }
-     for (int j = 0; j < 96; j++) {
+     for (int j = 0; j < 100; j++) {
       Serial.println(lightVals[j]); // Send light value for first plot
      Serial.print(','); // seperates the data so the serial plotter is able to plot two values at the same time
       Serial.println(array_3[j]); // Send moving average value for second plot
@@ -89,7 +85,6 @@ void loop() {
     Serial.println("Please input the correct numerical selection.");
   }
 }
-
 
 ############################### another version 
 
