@@ -46,7 +46,8 @@ if (random_number==user){
 }
 ############# for assignment 
 #include math.h // this way the program knows trig and math symbols 
-
+speaker is on pin A0
+tone (pin, frequency, duration)//for buzzer  
 
 
 
