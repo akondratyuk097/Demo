@@ -1,1 +1,21 @@
+####################### storing whatever number the user inputs (quiz1)
+void setup() {
+  Serial.begin(9600);
+  while (!Serial); // Wait for Serial Monitor to open
+  Serial.println ("enter your fav number");
+  while (Serial.available()==0){}
+  int len= Serial.available();
+  for (int i=0; i<len; i++){ // stores characters into an array for the digits available 
+    num[i]= Serial.read();
+  }
+  int ans=atoi (num);
+  Serial.println (ans*5 +23);
+}
+
+##################################### 
+
+
+
+
+
 
