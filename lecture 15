@@ -1,0 +1,16 @@
+#include <Adafruit_CircuitPlayground.h>
+#include <Adafruit_Circuit_Playground.h>
+
+void setup() {
+CircuitPlayground.begin();
+CircuitPlayground.setPixelColor(0,255,255,255);
+CircuitPlayground.clear(0);
+Serial.begin(9600);
+while (!Serial);
+
+
+
+
+}
+void loop() {
+
