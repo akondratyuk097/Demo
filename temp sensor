@@ -16,22 +16,17 @@ int M= analogRead(thermister); // thermister ADC value is read
 Serial.println(M); // reads ADC value  
 float Vout= ((3.3/1024.0)/M); // thermister ADC value is transferred to a Voltage 
 float Rt= (((33000.0)/ Vout)- Int_res); // total resistance based on initial 
-float temp_C= (B/ (log(Rt/((Int_res)*(exp((-B/Int_temp)))))))-273.15;// finds temp in Celsius based on constants and variable Rt of the thermistor circuit  
-float temp_F= (((1.8)*temp_C)+32.0);
+float temp_C= (B/ (log(Rt/((Int_res)*(exp((-B/Int_temp)))))));// finds temp in Celsius based on constants and variable Rt of the thermistor circuit  
+double temp_F= (((1.8)*temp_C)+32.0);
 delay (1000); 
 Serial.println("This is temp conversion: ");
 Serial.println (temp_C);
+Serial.println ("This is Farenheit: ");
+Serial.print (temp_F);
 
-//int F=(((4*temp_F)-160)/60); // calculates the frequency of chirps per second  
-//delay (1000); // gives the program enough time to see if there was a change in chirp frequency for the new tone to start   
-//int F_2= (((4*temp_F)-160)/60);
-//if (F==F_2){
-  //tone(A0,F,F*1000);
-  //delay(F*1000);
-//} else if (F!=F_2){
-  //tone (A0, F_2, F_2*1000);
-  //delay(F_2*1000);
-//}
+int F=(((4*temp_F)-160)/60); // calculates the frequency of chirps per second    
+tone(A0,F,F*1000);
+delay(F*1000);
 
 
 
