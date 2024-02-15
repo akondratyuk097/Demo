@@ -25,7 +25,7 @@ Serial.println ("This is Farenheit: ");
 Serial.print (temp_F);
 
 int F=(((4*temp_F)-160)/60); // calculates the frequency of chirps per second    
-tone(A0,F,F*1000);
+tone(speaker,40,F*1000);
 delay(F*1000);
 
 
