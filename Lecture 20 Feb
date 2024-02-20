@@ -1,1 +1,57 @@
+####################### turning on LED 13 on and off depending upon the switch 
+#include <Adafruit_CircuitPlayground.h>
+#include <Adafruit_Circuit_Playground.h>
+
+void setup() {
+Serial.begin (9600);
+while(!Serial);
+CircuitPlayground.begin();
+
+
+
+
+}
+void loop() {
+
+pinMode (4, INPUT_PULLDOWN); // for normal op 0  
+pinMode (7, INPUT_PULLUP); // normal op high 
+int x= digitalRead(4);
+int y= digitalRead(7);
+Serial.println(x);
+delay(500);
+if (x==1){
+  digitalWrite (13,1);
+}else {
+  digitalWrite (13,0);
+}
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
