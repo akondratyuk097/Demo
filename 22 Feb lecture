@@ -19,3 +19,66 @@ answer= x+y;
 return answer; 
 
 }
+########################### human calc 
+
+
+int add2 (int x, int y);
+int mult2 (int x, int y);
+int sub2 (int x, int y); 
+
+
+void setup (){
+Serial.begin (9600);
+while(!Serial);
+Serial.println ("enter your first number");
+while (Serial.available()==0);
+int x= Serial.parseInt(); 
+Serial.println ("Eneter your second number");
+while (Serial.available()==0);
+int y= Serial.parseInt ();
+Serial.println (" Enter the following number for mathematical operation.");
+Serial.println (" Select 1. add 2. mult 3. subtract ");
+while (Serial.available()==0);
+int oper= Serial.parseInt ();
+
+if (oper==1){
+  int ans= add2 (x,y);
+  Serial.print (ans);
+}else if (oper==2){
+  int ans= mult2 (x,y);
+  Serial.print (ans);
+}else if (oper==3){
+  int ans= sub2 (x,y);
+  Serial.print (ans);
+}else {
+  Serial.println ("Please select the appropriate option.");
+}
+ 
+
+}
+
+
+void loop (){
+  
+}
+
+int add2 (int x,int y){
+  int answer;
+  answer= x+y;
+  return answer; 
+
+}
+
+int mult2 (int x,int y){
+  int answer; 
+  answer= x+y;
+  return answer;
+
+}
+int sub2 (int x, int y){
+  int answer; 
+  answer= x-y;
+  return answer;
+
+
+}
