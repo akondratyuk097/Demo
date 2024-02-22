@@ -19,7 +19,7 @@ answer= x+y;
 return answer; 
 
 }
-########################### human calc 
+########################### calc 
 
 
 int add2 (int x, int y);
