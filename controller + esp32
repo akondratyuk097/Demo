@@ -1,6 +1,9 @@
 #include <Bluepad32.h>
 #include <ESP32Servo.h>
 Servo myservo;
+#define Motor 32
+#define LED 35
+
 
 ControllerPtr myControllers[BP32_MAX_GAMEPADS];
 
@@ -96,6 +99,16 @@ void processGamepad(ControllerPtr ctl) {
     // There are different ways to query whether a button is pressed.
     // By query each button individually:
     //  a(), b(), x(), y(), l1(), etc...
+  int throttleVal= ctl->throttle();
+  int motorSpeed= map(throttleVal, 0, 1023, 0, 255);
+  analogWrite(Motor, motorSpeed);
+
+  // int breakval= ctl->brake ();
+  // int servoPosition=
+  int XLaxis= ctl->axisX();
+  int servoPosition= map(XLaxis, -511,512,0,180);  // speed and angle of the servo 
+  myservo.write (servoPosition); 
+
     if (ctl->a()) {
         static int colorIdx = 0;
         // Some gamepads like DS4 and DualSense support changing the color LED.
@@ -213,14 +226,12 @@ void setup() {
     Serial.printf("Firmware: %s\n", BP32.firmwareVersion());
     const uint8_t* addr = BP32.localBdAddress();
     Serial.printf("BD Addr: %2X:%2X:%2X:%2X:%2X:%2X\n", addr[0], addr[1], addr[2], addr[3], addr[4], addr[5]);
-    ESP32PWM: allocateTimer(0);
-    ESP32PWM: allocateTimer(1);
-    ESP32PWM: allocateTimer(2);
-    ESP32PWM: allocateTimer(3);
+    ESP32PWM::allocateTimer(0);
+    ESP32PWM::allocateTimer(1);
+    ESP32PWM::allocateTimer(2);
+    ESP32PWM::allocateTimer(3);
     myservo.setPeriodHertz(50); // standard 50 HZ servo
-    Serial.printf("Firmware: %s\n", BP32.firmwareVersion());
-    const uint8_t* addr= BP32.localBdAddress();
-    Serial.printf("BD Addr: %2x:%2x:%2:%2:%2:%2\n", addr[0], addr[1], addr [2], addr[3], addr[4], addr[5]);
+    myservo.attach (33,500,2400);
 
 
     // Setup the Bluepad32 callbacks
