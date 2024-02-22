@@ -1,0 +1,21 @@
+################################# how to use a function 
+int add2 (int x, int y);
+
+void setup (){
+Serial.begin (9600);
+while(!Serial);
+int ans= add2 (5,3); // calling statement 
+Serial.println (ans);
+}
+
+
+void loop (){
+  
+}
+
+int add2 (int x, int y) {
+int answer;
+answer= x+y;
+return answer; 
+
+}
