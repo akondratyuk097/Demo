@@ -1,1 +1,41 @@
 
+############################################# total resistance 
+#include <Adafruit_CircuitPlayground.h>
+
+double R1(double x); // Declare function for calculating 1/R1
+double R2(double y); // Declare function for calculating 1/R2
+double Reqp(int R_1, int R_2); // Declare function for calculating equivalent resistance
+
+void setup() {
+  Serial.begin(9600); 
+  // No need for "while (!Serial);" here
+}
+
+void loop() {
+  Serial.println("What's the input resistance for R1?");
+  while (Serial.available() == 0);
+  int x = Serial.parseInt();
+  
+  Serial.println("What's your Resistance for R2?");
+  while (Serial.available() == 0);
+  int y = Serial.parseInt();
+  
+  double totalResistance = Reqp(x, y); // Calculate equivalent resistance
+  Serial.print("Your total resistance is: ");
+  Serial.println(totalResistance);
+}
+
+double R1(double x) {
+  return 1 / x; // Calculate 1/R1
+}
+
+double R2(double y) {
+  return 1 / y; // Calculate 1/R2
+}
+
+double Reqp(int R_1, int R_2) {
+  double totalResistance = R_1 + R_2;
+  return 1 / totalResistance; // Calculate equivalent resistance
+}
+
+
