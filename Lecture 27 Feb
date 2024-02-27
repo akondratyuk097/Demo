@@ -37,5 +37,29 @@ double Reqp(int R_1, int R_2) {
   double totalResistance = R_1 + R_2;
   return 1 / totalResistance; // Calculate equivalent resistance
 }
+############################# blinking LED 12 times in a function 
+#include <Adafruit_CircuitPlayground.h>
+
+void setup() {
+  Serial.begin(9600); 
+  pinMode (13, OUTPUT);
+  LEDBLINK (); 
+
+}
+
+void loop() {
+}
+
+void LEDBLINK () {
+for (int i=0; i<12; i++){
+digitalWrite(13, HIGH);
+delay (500);
+digitalWrite (13, LOW);
+delay (500);
+}
+
+}
+
+
 
 
