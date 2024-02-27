@@ -59,6 +59,24 @@ delay (500);
 }
 
 }
+##################################### axis reading 
+
+#include <Adafruit_CircuitPlayground.h>
+
+void setup() {
+  CircuitPlayground.begin(); // Initialize Circuit Playground library
+  Serial.begin(9600);
+  while (!Serial);
+}
+
+void loop() {
+  double x = CircuitPlayground.motionX();
+  double y = CircuitPlayground.motionY();
+  double z = CircuitPlayground.motionZ();
+  Serial.println(x);
+  Serial.println(y);
+  Serial.println(z);
+}
 
 
 
