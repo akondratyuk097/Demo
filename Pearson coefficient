@@ -1,0 +1,80 @@
+#include <math.h>
+#include <Adafruit_CircuitPlayground.h>
+
+
+int sample= 100; 
+// the code collects 100 samples which it uses to create Pearson Coefficent 
+int time= 50; 
+// sets the delay of samples to be 50ms 
+void setup() {
+  CircuitPlayground.begin(); 
+  Serial.begin(9600); 
+// sets baud rate to 9600
+  while (!Serial);
+  
+}
+
+void loop() {
+  double accel [sample]; 
+// variable for the array of acceleration 
+  int light [sample]; 
+// variable for the array of light readings 
+  for(int i=0; i<sample; i++){
+    accel[i]= CircuitPlayground.motionZ(); 
+// function for reading the acceleration in Z direction 
+    light[i]= analogRead(8); 
+// function reads teh analog value of light 
+    Serial.println (light[i]);
+    Serial.println (accel[i]);
+    delay(time);
+  }
+  double result= PearsonC(light, accel, sample); 
+// calls the function 
+  Serial.println("This is your Pearson coefficient: ");
+  Serial.print(result);
+// prints the Pearson coefficient every 100 samples 
+}
+double PearsonC (int light[], double accel[], int sample){
+  int sumX=0;
+// defines the summed acceleration readings 
+  double sumY=0;
+// defines the summed light readings 
+  double numX=0;
+// represents (x-avgX)
+  double numY=0;
+// represents (y-avgY)
+  double powerX=0;
+// represents (x-avgX)^2
+  double powerY=0; 
+// represents (y-avgY)^2
+  double productXY=0; 
+// represents (x-avgX)*(y-avgY)
+
+  for (int j=0;j<sample; j++){ 
+// loop to obtain mean values of light and acceleration  
+    sumX+= light[j];
+    sumY+= accel[j];
+  }
+  double avgX= sumX/sample;
+// mean value for acceleration 
+  double avgY= sumY/sample;
+// mean value for light 
+
+  for (int z=0; z<sample; z++){
+    numX+= light[z]- avgX;
+    powerX+= sq(light[z]- avgX);
+    numY+= accel[z]- avgY;
+    powerY+= sq(accel[z]- avgY);
+    productXY+= (light[z]- avgX)*(accel[z]- avgY); 
+  }
+  double numTotal= productXY; 
+// calculates all the numerator values of Pearson coefficient 
+  double denomTotal=sqrt(powerX*powerY);  
+// calculates all the denominator values of Pearson coefficinet 
+  double r=numTotal / denomTotal;
+// finds the pearsons coefficient     
+  return r; 
+// Pearson coefficient value is returned to the function 
+
+}
+
