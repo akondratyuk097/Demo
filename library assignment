@@ -1,33 +1,44 @@
 ############# in cpp file
 
 #include "mathfunctions.h"
+#include <math.h>
 
-double averageX (int x[], int s) {
+double meanX (int x[], int s) {
     int sumx = 0;
-  
-
     for (int i = 0; i < s; i++) {
         sumx += x[i];
     }
-
     return (double)sumx / s;
 }
 
-double averageY (int y[], int c) {
+double meanY (int y[], int c) {
     int sumy = 0;
-  
-
     for (int j = 0; j < c; j++) {
         sumy += y[j];
     }
-
     return (double)sumy / c;
 }
 
+double standarDevY (double meandevY, int y [], int c){
+
+    int sumDevY=0;
+    double productdevY=0; 
+    for (int z=0; z<c; z++){
+      sumDevY+= y[z]; 
+      productdevY+= sq(sumDevY-meandevY);
+    }
+    double totalstandardev= sqrt((productdevY/(c-1));
+    return totalstandardev
+}
+
+double standarDevX (double meandevX, int x [], int s){
 
 
 
 
+
+
+}
 
 
 
