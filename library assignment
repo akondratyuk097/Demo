@@ -58,7 +58,9 @@ double averageX (int x[], int s);
 
 double averageY (int y[], int c);
 
+double standarDevX (double meanX, int x[], int s);
 
+double standarDevY (double meanY, int y[], int c);
 
 
 
