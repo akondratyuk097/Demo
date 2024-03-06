@@ -100,10 +100,10 @@ double PC (int y[], int x[], double meanpcX, double meanpcY, int s){
   double productXY=0; 
 // represents (x-avgX)*(y-avgY)
   for (int z=0; z<s; z++){
-    numX+= x[s]- meanpcX;
-    powerX+= pow((x[s]- meanpcX), 2);
-    numY+= y[s]- meanpcY;
-    powerY+= pow(y[s]- meanpcY, 2);
+    numX+= x[z]- meanpcX;
+    powerX+= pow(numX, 2);
+    numY+= y[z]- meanpcY;
+    powerY+= pow(numY, 2);
     productXY+= (numX)*(numY); 
   }
   double numTotal= productXY; 
@@ -144,6 +144,7 @@ double PC (int y[], int x[], double meanpcX, double meanpcY, int s, int c);
 
 ################ in ino file
 
+
 #include "mathfunctions.h"
 
 
@@ -161,20 +162,19 @@ int s= (sizeof(x)/sizeof(x[0]));
 // number of samples for array x
 int c= (sizeof(y)/sizeof(y[0]));
 // number of samples for array y 
+Serial.println (s);
+Serial.println (c);
+Serial.println(meanX(x,s));
+Serial.println(meanY(y,s)); 
+Serial.println(standarDevX(meanX(x,s),x,s));
+Serial.println(standarDevY(meanY(y,s),y,s));
+Serial.println(medianX(x,s));
+Serial.println(medianY(y,s));
+Serial.println(PC(y,x,meanX(x,s),meanY(y,s),s));
 
-
-
-
-
+void loop (){
 
 }
-
-
-void loop(){
-
-
-}
-
 
 
 
