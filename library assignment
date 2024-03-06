@@ -1,5 +1,4 @@
 ############# in cpp file
-
 #include "mathfunctions.h"
 #include <math.h>
 
@@ -19,25 +18,25 @@ double meanY (int y[], int s) {
     return (double)sumy / s;
 }
 
-double standarDevY (double meandevY, int y [], int s){
+double standardDeviationY(double meanY, int y[], int s){
 // standard deviation for y samples 
     int sumDevY=0;
     double productdevY=0; 
     for (int z=0; z<s; z++){
       sumDevY+= y[z]; 
-      productdevY+= pow(y[z] - meandevY, 2);
+      productdevY+= pow(y[z] - meanY, 2);
     }
     double ansY= sqrt((productdevY/(s-1)));
     return ansY;
 }
 
-double standarDevX (double meandevX, int x [], int s){
+double standardDeviationX(double meanX, int x[], int s){
 // standard deviation for x samples
     int sumDevX=0;
     double productdevX=0; 
     for (int z=0; z<s; z++){
       sumDevX+= x[z]; 
-      productdevX+= pow(x[z] - meandevX, 2);
+      productdevX+= pow(x[z] - meanX, 2);
     }
     double ansX= sqrt((productdevX/(s-1)));
     return ansX;
@@ -116,31 +115,38 @@ double PC (int y[], int x[], double meanpcX, double meanpcY, int s){
 // Pearson coefficient value is returned to the function
 
 }
+double t_value(int s, int c, double stdDevX, double stdDevY, double meanX, double meanY){
+    double ans = (meanX - meanY) / sqrt((pow(stdDevX, 2) / s) + (pow(stdDevY, 2) / c));
+    return ans;
+}
+
 
 ################ in .h file 
-#ifndef mathfuntions_h 
-#define mathfuntions_h 
+#ifndef mathfunctions_h 
+#define mathfunctions_h 
 #include <Arduino.h>
 #include <math.h>
 
-double meanX (int x[], int s);
+double meanX(int x[], int s);
 // mean of x values
-double meanY (int y[], int s);
+double meanY(int y[], int s);
 // mean of y values 
-double standarDevX (double meanX, int x[], int s);
+double standardDeviationX(double meanX, int x[], int s);
 // standard deviation of x values
-double standarDevY (double meanY, int y[], int s);
+double standardDeviationY(double meanY, int y[], int s);
 // standard deviation of y values 
-int medianX (int x[],int s);
+int medianX(int x[], int s);
 // median for x-values 
-int medianY (int y[], int c);
+int medianY(int y[], int s);
 // median for y-values
-double PC (int y[], int x[], double meanpcX, double meanpcY, int s, int c);
+double PC(int y[], int x[], double meanpcX, double meanpcY, int s);
 // Pearson coefficient for both x and y values 
-
+double t_value(int s, int c, double stdDevX, double stdDevY, double meanX, double meanY);
+// t-value of t-test
 
 
 #endif
+
 
 ################ in ino file
 
@@ -162,20 +168,43 @@ int s= (sizeof(x)/sizeof(x[0]));
 // number of samples for array x
 int c= (sizeof(y)/sizeof(y[0]));
 // number of samples for array y 
-Serial.println (s);
-Serial.println (c);
-Serial.println(meanX(x,s));
-Serial.println(meanY(y,s)); 
-Serial.println(standarDevX(meanX(x,s),x,s));
-Serial.println(standarDevY(meanY(y,s),y,s));
-Serial.println(medianX(x,s));
-Serial.println(medianY(y,s));
-Serial.println(PC(y,x,meanX(x,s),meanY(y,s),s));
 
-void loop (){
+double meanXValue = meanX(x, s);
+double meanYValue = meanY(y, s);
+double stdDevXValue = standardDeviationX(meanXValue, x, s);
+double stdDevYValue = standardDeviationY(meanYValue, y, s);
+int medianXValue = medianX(x, s);
+int medianYValue = medianY(y, s);
+double pearsonCoefficient = PC(y, x, meanXValue, meanYValue, s);
+double tValue = t_value(s, c, stdDevXValue, stdDevYValue, meanXValue, meanYValue);
+
+Serial.println(s);
+Serial.println(c);
+Serial.println("This is your mean value of x samples: ");
+Serial.println(meanXValue);
+Serial.println("This is your mean value of y samples: ");
+Serial.println(meanYValue);
+Serial.println("This is your standard deviation of x samples: ");
+Serial.println(stdDevXValue);
+Serial.println("This is your standard deviation of y samples: ");
+Serial.println(stdDevYValue);
+Serial.println("This is your median of x samples: ");
+Serial.println(medianXValue);
+Serial.println("This is your median of y samples: ");
+Serial.println(medianYValue);
+Serial.println("This is your pearson coefficient: ");
+Serial.println(pearsonCoefficient);
+Serial.println("This is your t-value: ");
+Serial.println(tValue);
+
 
 }
 
+
+void loop(){
+
+
+}
 
 
 
