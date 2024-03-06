@@ -11,75 +11,136 @@ double meanX (int x[], int s) {
     return (double)sumx / s;
 }
 
-double meanY (int y[], int c) {
+double meanY (int y[], int s) {
     int sumy = 0;
-    for (int j = 0; j < c; j++) {
+    for (int j = 0; j < s; j++) {
         sumy += y[j];
     }
-    return (double)sumy / c;
+    return (double)sumy / s;
 }
 
-double standarDevY (double meandevY, int y [], int c){
-
+double standarDevY (double meandevY, int y [], int s){
+// standard deviation for y samples 
     int sumDevY=0;
     double productdevY=0; 
-    for (int z=0; z<c; z++){
+    for (int z=0; z<s; z++){
       sumDevY+= y[z]; 
-      productdevY+= sq(sumDevY-meandevY);
+      productdevY+= pow(y[z] - meandevY, 2);
     }
-    double totalstandardev= sqrt((productdevY/(c-1));
-    return totalstandardev
+    double ansY= sqrt((productdevY/(s-1)));
+    return ansY;
 }
 
 double standarDevX (double meandevX, int x [], int s){
-
-
-
-
-
+// standard deviation for x samples
+    int sumDevX=0;
+    double productdevX=0; 
+    for (int z=0; z<s; z++){
+      sumDevX+= x[z]; 
+      productdevX+= pow(x[z] - meandevX, 2);
+    }
+    double ansX= sqrt((productdevX/(s-1)));
+    return ansX;
 
 }
 
+int medianX (int x[],int s){
+    for (int i=0; i < s-1; i++) {
+    for (int j=i+1; j<s; j++) {
+      if (x[i] > x[j]) {
+        // Swap elements if they are out of order
+        int temp = x[i];
+        x[i] = x[j];
+        x[j] = temp;
+      }
+    }
+  }
+  if(s%2==0){
+    int evenx= x[(((s/2)+((s/2)+1))/2)];
+    return evenx;
 
+  }else {
+    int oddx= x[((s+1)/2)];
+    return oddx;
+  }  
 
+}
 
+int medianY (int y[], int s){
+ for (int i=0; i < s-1; i++) {
+    for (int j=i+1; j<s; j++) {
+      if (y[i] > y[j]) {
+        // Swap elements if they are out of order
+        int temp = y[i];
+        y[i] = y[j];
+        y[j] = temp;
+      }
+    }
+  }
+  if(s%2==0){
+    int eveny= y[(((s/2)+((s/2)+1))/2)];
+    return eveny;
 
+  }else {
+    int oddy= y[((s+1)/2)];
+    return oddy;
+  }  
 
+}
 
+double PC (int y[], int x[], double meanpcX, double meanpcY, int s){
+  double numX=0;
+// represents (x-avgX)
+  double numY=0;
+// represents (y-avgY)
+  double powerX=0;
+// represents (x-avgX)^2
+  double powerY=0; 
+// represents (y-avgY)^2
+  double productXY=0; 
+// represents (x-avgX)*(y-avgY)
+  for (int z=0; z<s; z++){
+    numX+= x[s]- meanpcX;
+    powerX+= pow((x[s]- meanpcX), 2);
+    numY+= y[s]- meanpcY;
+    powerY+= pow(y[s]- meanpcY, 2);
+    productXY+= (numX)*(numY); 
+  }
+  double numTotal= productXY; 
+// calculates all the numerator values of Pearson coefficient 
+  double denomTotal=sqrt(powerX*powerY);  
+// calculates all the denominator values of Pearson coefficinet 
+  double r=numTotal / denomTotal;
+// finds the pearsons coefficient     
+  return r; 
+// Pearson coefficient value is returned to the function
 
-
+}
 
 ################ in .h file 
 #ifndef mathfuntions_h 
 #define mathfuntions_h 
 #include <Arduino.h>
+#include <math.h>
 
-double averageX (int x[], int s);
-
-double averageY (int y[], int c);
-
+double meanX (int x[], int s);
+// mean of x values
+double meanY (int y[], int s);
+// mean of y values 
 double standarDevX (double meanX, int x[], int s);
-
-double standarDevY (double meanY, int y[], int c);
-
+// standard deviation of x values
+double standarDevY (double meanY, int y[], int s);
+// standard deviation of y values 
+int medianX (int x[],int s);
+// median for x-values 
+int medianY (int y[], int c);
+// median for y-values
+double PC (int y[], int x[], double meanpcX, double meanpcY, int s, int c);
+// Pearson coefficient for both x and y values 
 
 
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ################ in ino file
 
