@@ -3,6 +3,7 @@
 #include <math.h>
 
 double meanX (int x[], int s) {
+  // mean of x values
     int sumx = 0;
     for (int i = 0; i < s; i++) {
         sumx += x[i];
@@ -11,6 +12,7 @@ double meanX (int x[], int s) {
 }
 
 double meanY (int y[], int s) {
+  // mean of y values
     int sumy = 0;
     for (int j = 0; j < s; j++) {
         sumy += y[j];
@@ -44,6 +46,7 @@ double standardDeviationX(double meanX, int x[], int s){
 }
 
 int medianX (int x[],int s){
+  // median for x-values 
     for (int i=0; i < s-1; i++) {
     for (int j=i+1; j<s; j++) {
       if (x[i] > x[j]) {
@@ -51,14 +54,17 @@ int medianX (int x[],int s){
         int temp = x[i];
         x[i] = x[j];
         x[j] = temp;
+        // temp values never get deleted 
       }
     }
   }
-  if(s%2==0){
+  if(s%2==0){ 
+// if the sample number of units is even then it will perform the following function: 
     int evenx= x[(((s/2)+((s/2)+1))/2)];
     return evenx;
 
   }else {
+// otherwise the sample number is odd and will perform the following: 
     int oddx= x[((s+1)/2)];
     return oddx;
   }  
@@ -77,10 +83,12 @@ int medianY (int y[], int s){
     }
   }
   if(s%2==0){
+// if the sample number of units is even then it will perform the following function:
     int eveny= y[(((s/2)+((s/2)+1))/2)];
     return eveny;
 
   }else {
+// otherwise the sample number is odd and will perform the following:
     int oddy= y[((s+1)/2)];
     return oddy;
   }  
@@ -116,6 +124,7 @@ double PC (int y[], int x[], double meanpcX, double meanpcY, int s){
 
 }
 double t_value(int s, int c, double stdDevX, double stdDevY, double meanX, double meanY){
+  // calculates the t-value from the variables of other functions 
     double ans = (meanX - meanY) / sqrt((pow(stdDevX, 2) / s) + (pow(stdDevY, 2) / c));
     return ans;
 }
