@@ -1,1 +1,46 @@
+##################### code for transmitter 
+const int buttonPin = 4; // Button pin
+const int ledStripPin = XX; // Pin connected to LED strip
+
+volatile int signalCount = 0; // Variable to keep track of signal counts
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP); // Assuming button is connected to pull the pin low when pressed
+  attachInterrupt(digitalPinToInterrupt(buttonPin), buttonInterruptHandler, FALLING); // Attach interrupt to button pin
+}
+
+void loop() {
+  // Your main code here
+}
+
+void buttonInterruptHandler() {
+  // This function will be called when the button is pressed
+  signalCount++; // Increment signal count
+  // Send signalCount or some encoded signal to the other Playground Express
+}
+##################### code for receiver 
+const int ledStripPin = XX; // Pin connected to LED strip
+
+int currentColorIndex = 0; // Variable to keep track of the current color index
+const int numColors = 3; // Total number of colors you want to cycle through
+
+void setup() {
+  // Initialize LED strip
+}
+
+void loop() {
+  // Your main code here
+}
+
+void receiveSignal() {
+  // This function will be called when a signal is received from the other Playground Express
+  currentColorIndex = (currentColorIndex + 1) % numColors; // Cycle through colors
+  // Set LED strip color based on currentColorIndex
+}
+
+
+
+
+
+
 
