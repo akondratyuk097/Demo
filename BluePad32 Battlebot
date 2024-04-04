@@ -1,0 +1,63 @@
+#include <BluePad32.h>
+
+// Define motor pins
+const int motorAPin1 = 2; // Example pin for motor A direction control 1
+const int motorAPin2 = 3; // Example pin for motor A direction control 2
+const int motorBPin1 = 4; // Example pin for motor B direction control 1
+const int motorBPin2 = 5; // Example pin for motor B direction control 2
+
+// Create BluePad32 object
+BluePad32 bluepad;
+
+void setup() {
+    // Initialize serial communication
+    Serial.begin(9600);
+
+    // Initialize BluePad32 with the serial object
+    bluepad.begin(Serial);
+
+    // Set motor pins as outputs
+    pinMode(motorAPin1, OUTPUT);
+    pinMode(motorAPin2, OUTPUT);
+    pinMode(motorBPin1, OUTPUT);
+    pinMode(motorBPin2, OUTPUT);
+}
+
+void loop() {
+    // Read joystick values
+    int xAxisValue = bluepad.readJoystickX();
+    int yAxisValue = bluepad.readJoystickY();
+    
+    // Process joystick values and control the motors accordingly
+    if (xAxisValue < 300) {
+        // Move left
+        digitalWrite(motorAPin1, HIGH);
+        digitalWrite(motorAPin2, LOW);
+        digitalWrite(motorBPin1, LOW);
+        digitalWrite(motorBPin2, HIGH);
+    } else if (xAxisValue > 700) {
+        // Move right
+        digitalWrite(motorAPin1, LOW);
+        digitalWrite(motorAPin2, HIGH);
+        digitalWrite(motorBPin1, HIGH);
+        digitalWrite(motorBPin2, LOW);
+    } else if (yAxisValue < 300) {
+        // Move forward
+        digitalWrite(motorAPin1, HIGH);
+        digitalWrite(motorAPin2, LOW);
+        digitalWrite(motorBPin1, HIGH);
+        digitalWrite(motorBPin2, LOW);
+    } else if (yAxisValue > 700) {
+        // Move backward
+        digitalWrite(motorAPin1, LOW);
+        digitalWrite(motorAPin2, HIGH);
+        digitalWrite(motorBPin1, LOW);
+        digitalWrite(motorBPin2, HIGH);
+    } else {
+        // Stop both motors
+        digitalWrite(motorAPin1, LOW);
+        digitalWrite(motorAPin2, LOW);
+        digitalWrite(motorBPin1, LOW);
+        digitalWrite(motorBPin2, LOW);
+    }
+}
