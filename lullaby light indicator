@@ -1,0 +1,136 @@
+#include <Adafruit_CircuitPlayground.h>
+#define switch 7
+#define NEOPIX_PIN A0
+#define NUM_PIXELS 30
+#define button 5
+Adafruit_CPlay_NeoPixel strip = Adafruit_CPlay_NeoPixel(NUM_PIXELS, NEOPIX_PIN, NEO_GRB + NEO_KHZ800);
+
+
+
+
+void setup() {
+  // put your setup code here, to run once:
+  CircuitPlayground.begin();
+  pinMode(switch,INPUT_PULLUP); // turns the unit on or off
+  strip.begin();
+
+
+}
+
+
+void loop() {
+
+int turn_on= digitalRead(switch);// slide switch
+
+
+if(switch==1){// if slide switch is on the left its on 
+
+attachInterrupt(digitalPinToInterrupt(button), button_press, CHANGE);
+
+//colors 
+int color_A4=analogRead(4);
+ if(color_A4>200){
+  Red_solid(int button_press);
+ }
+int color_A5=analogRead(5);
+   if(color_A5>200){
+    Yellow_solid(int button_press);
+   }
+int color_A6=analogRead(6);
+  if(color_A6>200){
+    Green_solid(int button_press);
+  }
+int color_A7=analogRead(7);
+  if(color_A7>200){
+    Blue_solid(int button_press);
+  }
+Serial.println(color_A4);
+
+//tone 
+int tone_A3=analogRead(3);
+int tone_A2=analogRead(2);
+int tone_A1=analogRead(1);
+
+
+
+
+}
+
+void button_press_toggle (){
+  int state= digitalRead(button);
+  state=!state;
+  
+}
+
+
+void Red_solid(int button_press){ // for pin A4
+int y= button_press;
+
+if(y==1){
+  for(int i = 0; i < 30; i++)
+      {
+          strip.setPixelColor(i, 255, 0, 0);
+      }
+      strip.show();
+
+  }
+  else{
+
+  }
+}
+
+
+void Green_solid(int button_press){ // for pin A6
+int y= button_press;
+
+if(y==1){
+  for(int i = 0; i < 30; i++)
+      {
+          strip.setPixelColor(i, 0, 255, 0);
+      }
+      strip.show();
+
+  }
+  else(){
+  }
+
+}
+
+
+
+void Yellow_solid(int button_press){ // for pin A5
+int y= button_press;
+
+if(y==1){
+  for(int i = 0; i < 30; i++)
+      {
+          strip.setPixelColor(i, 255, 255, 0);
+      }
+      strip.show();
+  }
+  else(){
+
+  }
+
+}
+
+
+void Blue_solid(int button_press){ // for pin A7
+int y= button_press;
+
+if(y==1){
+  for(int i = 0; i < 30; i++)
+      {
+          strip.setPixelColor(i, 0, 0, 255);
+
+
+
+
+      }
+      strip.show();
+  }
+  else(){
+
+  }
+}
+
