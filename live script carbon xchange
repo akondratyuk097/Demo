@@ -1,1 +1,26 @@
+k1 = (4.3) * 10^(-5);  % Constant 1
+k2 = (2) * 10^(-2);    % Constant 2
+k3 = (1.6) * 10^(-2); % Constant 3
+k4= (1.2)*10^(-2); % arbitrary constant 4
+k5 = (1.8) * 10^(-3);    % Constant 5
+ 
+dt=0.01;               % 100 samples per year 
+tau= 50;                 % Time lag 
+N=600*100;            % Total samples
+
+xl0 = 400;              % Initial amount of carbon in living plants
+xd0 = 500;              % Initial amount of carbon in dead plants
+ya0 = 460;              % Initial amount of carbon in the atmosphere
+ys0 = 25000;            % Initial amount of carbon in the sea
+a=xl0+ya0+xd0+ys0; %total carbon between all systems
+
+param = [k1,k2,k3,k4,k5,a,dt];  % Constants array
+t=dt*(0:N);           %time for 600 samples
+[xl, xd, ya, ys, s]=carbon_xchange(xl0, xd0, ya0, ys0, N, dt, param, tau);  % Calling the function 
+
+plot(t,xd)
+plot(t,xl)
+plot(t,ya)
+plot(t,ys)
+
 
