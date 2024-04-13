@@ -1,0 +1,31 @@
+function [xl,xd,ya,ys,s]=carbon_xchange(xl0,xd0,ya0,ys0,N,dt,param,tau)
+    xl=zeros(1,N);
+    xd=zeros(1,N);
+    ya=zeros(1,N);
+    ys=zeros(1,N);
+    s=zeros(1,N);
+
+    xl(1) = xl0;
+    xd(1) = xd0;
+    ya(1) = ya0;
+    ys(1) = ys0;
+    s(1)=1;
+
+    k1 = param(1);
+    k2 = param(2);
+    k3 = param(3);
+    k4= param(4);
+    k5 = param(5);
+    a= param(6);
+    
+    
+    
+    for i = 1:N
+        s(i+1)=s(i)+((xl(i)*dt)/tau)-((s(i)*dt)/tau);           %Time lag variable
+        xl(i+1)=xl(i)+(k1*xl(i)*ya(i)*dt)-(k2*s(i)*dt);       %Living plants variable
+        xd(i+1)=xd(i)+(k2*s(i)*dt)-(k3*xd(i)*dt);             %Dead organisms variable
+        ya(i+1)=a-ys(i)-xl(i)-xd(i);                          %Atmosphere variable
+        ys(i+1)=ys(i)+((dt*k4*ya(i))-(dt*k4*k5*ys(i)));       %Sea variable 
+    end
+
+end
